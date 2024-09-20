@@ -1,0 +1,17 @@
+.year-calendar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .month-calendar {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  

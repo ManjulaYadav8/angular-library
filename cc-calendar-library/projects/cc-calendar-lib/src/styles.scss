@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+@font-face {
+  font-family: Montserrat;
+  src: url(./assets/fonts/montserrat/static/Montserrat-Light.ttf)
+    format("trueType");
+}
+
+@font-face {
+  font-family: Inter;
+  src: url(./assets/fonts/inter/static/Inter_18pt-Light.ttf) format("trueType");
+}
+.ant-modal-confirm {
+  .ant-modal-body {
+    box-shadow: 24px 24px 48px 0px rgba(0, 0, 0, 0.25);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    color: rgba(111, 126, 132, 1);
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: left;
+  }
+  .ant-btn-primary {
+    background: rgba(8, 37, 171, 0.75);
+    color: rgba(255, 255, 255, 1);
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,432 @@
+<div class="modal-container">
+  <form nz-form [formGroup]="taskForm">
+    <nz-form-item class="form-item">
+      <nz-form-control class="full-width">
+        <input nz-input formControlName="title" placeholder="Title" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="form-item">
+      <nz-form-control class="full-width">
+        <div nz-row>
+          <div nz-col nzSpan="2">
+            <img
+              src="../../../../assets/icons/create-event/description-icon.png"
+            />
+          </div>
+          <div nz-col nzSpan="22">
+            <textarea
+              nz-input
+              formControlName="description"
+              placeholder="Description"
+            ></textarea>
+          </div>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="form-item">
+      <nz-form-control class="full-width">
+        <div nz-row>
+          <div nz-col nzSpan="2">
+            <img src="../../../../assets/icons/create-event/group-icon.png" />
+          </div>
+          <div nz-col nzSpan="14">
+            <nz-select
+              nzShowSearch
+              nzPlaceHolder="Select Timezone"
+              formControlName="timezone"
+            >
+              <nz-option
+                *ngFor="let timezone of timezones"
+                [nzLabel]="timezone.name"
+                [nzValue]="timezone.name"
+              ></nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="1"></div>
+          <div nz-col nzSpan="7">
+            <label nz-checkbox formControlName="isHighPriority"
+              >High Priority</label
+            >
+          </div>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="form-item">
+      <nz-form-control class="date-time-controls">
+        <div nz-row>
+          <div nz-col nzSpan="2">
+            <img src="../../../../assets/icons/create-event/clock-circle.png" />
+          </div>
+          <div nz-col nzSpan="6">
+            <nz-date-picker
+              nzPlaceHolder="Start Date"
+              class="date-picker"
+              [(ngModel)]="taskStartDate"
+              (ngModelChange)="taskStartDateClick($event)"
+              [ngModelOptions]="{ standalone: true }"
+              [nzDisabledDate]="disabledDate"
+              [nzAllowClear]="false"
+            ></nz-date-picker>
+          </div>
+
+          <div nz-col [nzSpan]="isAlldayTask ? 0 : 11" *ngIf="!isAlldayTask">
+            <nz-time-picker
+              [(ngModel)]="taskStartTime"
+              (ngModelChange)="startTimeLog($event)"
+              [ngModelOptions]="{ standalone: true }"
+              [nzUse12Hours]="true"
+              nzFormat="h:mm a"
+              [nzMinuteStep]="15"
+              nzPlaceHolder="Start Time"
+              class="time-picker"
+              [nzAllowEmpty]="false"
+            ></nz-time-picker>
+            <span class="time-separator"> - </span>
+            <nz-time-picker
+              [(ngModel)]="taskEndTime"
+              (ngModelChange)="endTimeLog($event)"
+              [ngModelOptions]="{ standalone: true }"
+              [nzUse12Hours]="true"
+              nzFormat="h:mm a"
+              [nzMinuteStep]="15"
+              nzPlaceHolder="End Time"
+              class="time-picker"
+              [nzDisabledHours]="disabledEndHours"
+              [nzDisabledMinutes]="disabledEndMinutes"
+              [nzAllowEmpty]="false"
+            ></nz-time-picker>
+
+            <!-- <nz-select
+              nzShowSearch
+              class="time-picker"
+              [(ngModel)]="taskStartTime"
+              nzPlaceHolder="Start Time"
+              (ngModelChange)="startTimeLog($event)"
+              [ngModelOptions]="{ standalone: true }"
+            >
+              <nz-option
+                *ngFor="let time of timeOptionsStart"
+                [nzValue]="time"
+                [nzLabel]="time"
+              ></nz-option>
+            </nz-select>
+            <span class="time-separator"> - </span>
+            <nz-select
+              nzShowSearch
+              class="time-picker"
+              [(ngModel)]="taskEndTime"
+              nzPlaceHolder="End Time"
+              (ngModelChange)="endTimeLog($event)"
+              [ngModelOptions]="{ standalone: true }"
+            >
+              <nz-option
+                *ngFor="let time of timeOptionsEnd"
+                [nzValue]="time"
+                [nzLabel]="time"
+              ></nz-option>
+            </nz-select> -->
+          </div>
+          <div nz-col [nzSpan]="isAlldayTask ? 6 : 5" *ngIf="isAlldayTask">
+            <nz-date-picker
+              nzPlaceHolder="End Date"
+              class="date-picker"
+              [(ngModel)]="taskEndDate"
+              (ngModelChange)="taskEndDateClick($event)"
+              [ngModelOptions]="{ standalone: true }"
+              [nzDisabledDate]="disabledDate"
+              [nzAllowClear]="false"
+            ></nz-date-picker>
+          </div>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="form-item">
+      <nz-form-control class="recusrive-control">
+        <div nz-row>
+          <div nz-col nzSpan="2"></div>
+
+          <div nz-col nzSpan="22">
+            <label
+              nz-checkbox
+              [(ngModel)]="isAlldayTask"
+              [ngModelOptions]="{ standalone: true }"
+              (ngModelChange)="isAlldayTaskCheckbox()"
+              >All day
+            </label>
+          </div>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+
+    <!-- <div
+      class="dropdown-section"
+      *ngFor="
+        let assigneeDetail of eventTaskAssigneeDetails.controls;
+        let i = index
+      "
+    >
+      <nz-form-control>
+        <div nz-row>
+          <div nz-col nzSpan="2"></div>
+
+          <div nz-col nzSpan="7">
+            <nz-select
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Company"
+              [(ngModel)]="selectedCompany"
+              [ngModelOptions]="{ standalone: true }"
+              (ngModelChange)="onCompanySelect($event, i)"
+            >
+              <nz-option
+                *ngFor="let company of companies"
+                [nzLabel]="company.name"
+                [nzValue]="company.name"
+              ></nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="7" class="nz-select-margin">
+            <nz-select
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Department"
+              [(ngModel)]="selectedDepartment"
+              [ngModelOptions]="{ standalone: true }"
+              (ngModelChange)="onDepartmentSelect($event, i)"
+            >
+              <nz-option
+                *ngFor="let dept of departments"
+                [nzLabel]="dept.name"
+                [nzValue]="dept.name"
+              ></nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="7" class="nz-select-margin">
+            <nz-select
+              nzPlaceHolder="User"
+              nzMode="multiple"
+              [(ngModel)]="selectedUsers"
+              [ngModelOptions]="{ standalone: true }"
+              (ngModelChange)="onUserSelect($event, i)"
+            >
+              <nz-option
+                *ngFor="let user of users"
+                [nzLabel]="user.name"
+                [nzValue]="user"
+              ></nz-option>
+            </nz-select>
+         
+            <div
+              *ngIf="
+                taskForm.hasError('companyUsersRequired') &&
+                eventTaskAssigneeDetails.at(i).hasError('companyUsersRequired')
+              "
+            >
+              At least one user must be selected if a company is chosen.
+            </div>
+          </div>
+          <div nz-col nzSpan="1" class="nz-select-margin">
+            <img
+              [ngClass]="{
+                'plus-style': i === eventTaskAssigneeDetails.length - 1,
+                'minus-style': i !== eventTaskAssigneeDetails.length - 1
+              }"
+              [src]="
+                i === eventTaskAssigneeDetails.length - 1
+                  ? '../../../../assets/icons/create-event/+.png'
+                  : '../../../../assets/icons/create-event/x.png'
+              "
+              (click)="
+                i === eventTaskAssigneeDetails.length - 1
+                  ? addAssigneeDetail()
+                  : removeAssigneeDetails(i)
+              "
+            />
+          </div>
+        </div>
+      </nz-form-control>
+    </div> -->
+
+    <div class="form-item" formArrayName="eventTaskAssigneeDetails">
+      <nz-form-control
+        class="dropdown-section"
+        *ngFor="
+          let assigneeDetail of eventTaskAssigneeDetails.controls;
+          let i = index
+        "
+        [formGroupName]="i"
+      >
+        <div nz-row>
+          <div nz-col nzSpan="2">
+            <svg
+              width="25"
+              height="27"
+              viewBox="0 0 25 27"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.9914 11.785C14.1256 11.785 16.6664 9.1595 16.6664 5.92081C16.6664 2.68212 14.1256 0.0566406 10.9914 0.0566406C7.85719 0.0566406 5.31641 2.68212 5.31641 5.92081C5.31641 9.1595 7.85719 11.785 10.9914 11.785Z"
+                fill="#6F7E84"
+              />
+              <path
+                d="M5.99988 19.9482C6.0172 19.4717 6.17083 19.0113 6.44135 18.6251C6.71186 18.2388 7.08713 17.9441 7.5197 17.7782C7.95227 17.6123 8.42273 17.5827 8.8716 17.693C9.32047 17.8034 9.72761 18.0488 10.0415 18.3982L13.2582 21.9718L18.9582 15.4015C16.6036 13.7801 13.8291 12.9335 10.9999 12.9732C9.03727 12.9219 7.08762 13.3155 5.288 14.1263C3.48838 14.9371 1.88248 16.1454 0.583212 17.6662C0.4733 17.8177 0.414725 18.0023 0.416545 18.1915V22.8329C0.41635 23.2809 0.585065 23.7113 0.886892 24.0328C1.18872 24.3543 1.59991 24.5417 2.03321 24.5551H9.17488L6.61654 21.7135C6.40517 21.4765 6.24174 21.1983 6.13584 20.8951C6.02995 20.592 5.98372 20.27 5.99988 19.9482Z"
+                fill="#6F7E84"
+              />
+              <path
+                d="M24.1415 13.0337C24.0597 12.9574 23.9641 12.8985 23.8601 12.8606C23.7562 12.8227 23.646 12.8065 23.5359 12.8129C23.4259 12.8193 23.3181 12.8482 23.219 12.8979C23.1198 12.9477 23.0312 13.0172 22.9582 13.1026L13.2749 24.2971L8.94152 19.4835C8.87039 19.3975 8.78357 19.3269 8.68603 19.2756C8.58848 19.2243 8.48211 19.1934 8.373 19.1846C8.26389 19.1758 8.15418 19.1893 8.05011 19.2243C7.94605 19.2594 7.84969 19.3152 7.76652 19.3887C7.68841 19.4688 7.62642 19.564 7.58411 19.669C7.5418 19.7739 7.52002 19.8864 7.52002 20.0001C7.52002 20.1138 7.5418 20.2263 7.58411 20.3313C7.62642 20.4362 7.68841 20.5315 7.76652 20.6115L13.3332 26.8115L24.1999 14.2221C24.34 14.0543 24.4121 13.8371 24.4013 13.6158C24.3904 13.3945 24.2974 13.186 24.1415 13.0337Z"
+                fill="#6F7E84"
+              />
+            </svg>
+          </div>
+
+          <div nz-col nzSpan="7">
+            <nz-select
+              formControlName="company"
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Company"
+            >
+              <nz-option
+                *ngFor="let company of companies"
+                [nzLabel]="company.name"
+                [nzValue]="company.name"
+              ></nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="7" class="nz-select-margin">
+            <nz-select
+              formControlName="department"
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Department"
+            >
+              <nz-option
+                *ngFor="let dept of departments"
+                [nzLabel]="dept.name"
+                [nzValue]="dept.name"
+              ></nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="7" class="nz-select-margin">
+            <nz-select
+              formControlName="users"
+              nzPlaceHolder="User"
+              nzMode="multiple"
+            >
+              <nz-option
+                *ngFor="let user of users"
+                [nzLabel]="user.user_name"
+                [nzValue]="user"
+              ></nz-option>
+            </nz-select>
+          </div>
+
+          <div nz-col nzSpan="1" class="nz-select-margin">
+            <img
+              [ngClass]="{
+                'plus-style': i === eventTaskAssigneeDetails.length - 1,
+                'minus-style': i !== eventTaskAssigneeDetails.length - 1
+              }"
+              [src]="
+                i === eventTaskAssigneeDetails.length - 1
+                  ? '../../../../assets/icons/create-event/+.png'
+                  : '../../../../assets/icons/create-event/x.png'
+              "
+              (click)="
+                i === eventTaskAssigneeDetails.length - 1
+                  ? addAssigneeDetail()
+                  : removeAssigneeDetails(i)
+              "
+            />
+          </div>
+        </div>
+      </nz-form-control>
+    </div>
+
+    <br />
+
+    <nz-form-item class="form-item">
+      <nz-form-control class="reminder-control">
+        <div
+          nz-row
+          *ngFor="
+            let reminderDetail of eventTaskReminderDetails.controls;
+            let i = index
+          "
+        >
+          <div nz-col nzSpan="2">
+            <img src="../../../../assets/icons/create-event/bell-icon.png" />
+          </div>
+          <div nz-col nzSpan="4">
+            <nz-input-number
+              nzPlaceHolder="1"
+              [nzMin]="reminderIntervalMinValue"
+              [nzMax]="reminderIntervalMaxValue"
+              [nzStep]="1"
+              [ngModel]="
+                eventTaskReminderDetails.at(i).get('reminderInterval')?.value
+              "
+              [ngModelOptions]="{ standalone: true }"
+              (ngModelChange)="onReminderIntervalSelect($event, i)"
+            ></nz-input-number>
+          </div>
+          <div nz-col nzSpan="6">
+            <nz-select
+              nzPlaceHolder="Hours"
+              [ngModel]="
+                eventTaskReminderDetails.at(i).get('reminderUOM')?.value
+              "
+              [ngModelOptions]="{ standalone: true }"
+              (ngModelChange)="onReminderUomSelect($event, i)"
+            >
+              <nz-option
+                *ngFor="let uom of reminderUOMList"
+                [nzValue]="uom"
+                [nzLabel]="uom | titlecase"
+              ></nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="6">
+            <img
+              [ngClass]="{
+                'plus-style': i === eventTaskReminderDetails.length - 1,
+                'minus-style': i !== eventTaskReminderDetails.length - 1
+              }"
+              [src]="
+                i === eventTaskReminderDetails.length - 1
+                  ? '../../../../assets/icons/create-event/+.png'
+                  : '../../../../assets/icons/create-event/x.png'
+              "
+              (click)="
+                i === eventTaskReminderDetails.length - 1
+                  ? addReminder()
+                  : removeReminder(i)
+              "
+            />
+          </div>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div class="modal-footer">
+      <button nz-button nzType="default" (click)="cancel()">Cancel</button>
+      &nbsp;&nbsp;
+      <button
+        nz-button
+        nzType="primary"
+        (click)="submitForm()"
+        [disabled]="taskForm.invalid"
+        [ngStyle]="{
+          color: '#fff'
+        }"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

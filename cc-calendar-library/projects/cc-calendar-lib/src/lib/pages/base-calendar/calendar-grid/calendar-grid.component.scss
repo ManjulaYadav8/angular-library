@@ -1,0 +1,666 @@
+.calendar-grid {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: scroll;
+}
+:host ::ng-deep .header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 20px;
+  .collapsable-menu {
+    span {
+      font-size: 20px;
+    }
+    i {
+      cursor: pointer;
+      width: 26.25px;
+      height: 17.5px;
+      top: 8.75px;
+      left: 4.38px;
+      gap: 0px;
+      opacity: 0px;
+    }
+  }
+  .left-section {
+    display: flex;
+    align-items: center;
+  }
+
+  .right-section {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon-button {
+    background: transparent;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .header-button {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+
+  .monthYear {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 20px;
+
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29.26px;
+    color: #000000;
+  }
+
+  .text-end {
+    text-align: end;
+  }
+
+  .btn-group {
+    margin-right: 10px;
+  }
+
+  .dropdown-menu {
+    text-align: left;
+  }
+
+  .dropdown-center {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+.ant-dropdown-menu {
+  background: rgba(179, 179, 179, 1);
+  border-radius: 8px;
+  .ant-dropdown-menu-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 1);
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.5px;
+    text-align: left;
+  }
+}
+
+.header-button {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.5px;
+  text-align: center;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 1);
+
+  box-shadow: -24px -24px 48px 0px rgba(8, 36, 164, 0.7) inset,
+    12px 12px 24px 0px rgba(157, 168, 219, 1) inset,
+    24px 24px 48px 0px rgba(96, 114, 196, 0.14);
+}
+::ng-deep .calendar-section {
+  width: -webkit-fill-available;
+}
+:host ::ng-deep .custom-calendar {
+  .cal-header {
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.94px;
+    text-align: center;
+    color: black;
+
+    .btn {
+      margin-right: 10px;
+    }
+  }
+
+  .cal-month-view {
+    .document-event-type {
+      background: linear-gradient(
+        90deg,
+        rgba(67, 114, 198, 1) 4%,
+        rgba(146, 181, 242, 0.45) 4%,
+        rgba(84, 105, 140, 0.45) 100%
+      );
+      color: rgba(0, 0, 0, 1);
+      // rgba(67, 114, 198, 1)
+    }
+    .policy-event-type {
+      background: linear-gradient(
+        90deg,
+        rgba(109, 178, 132, 1) 4%,
+        rgba(132, 216, 160, 0.25) 4%,
+        rgba(70, 114, 84, 0.25) 100%
+      );
+
+      color: rgba(0, 0, 0, 1);
+    }
+    .request-checklist-event-type {
+      background: linear-gradient(
+        90deg,
+        rgba(47, 128, 156, 1) 4%,
+        rgba(76, 210, 255, 0.36) 0%,
+        rgba(46, 126, 153, 0.36) 100%
+      );
+      color: rgba(0, 0, 0, 1);
+    }
+    .request-complaince-event-type {
+      // background: linear-gradient(89.6deg, #A295F3 5%, #5E568D 5%);
+      background: linear-gradient(
+        90deg,
+        rgba(162, 149, 243, 1) 4%,
+        rgba(162, 149, 243, 0.28) 4%
+      );
+      color: rgba(0, 0, 0, 1);
+    }
+    .custom-event-type {
+      background: linear-gradient(
+        to right,
+        rgba(8, 37, 171, 1) 4%,
+        rgba(26, 96, 166, 0.25) 1%
+      );
+      color: rgba(0, 0, 0, 1);
+
+      // background: rgba(26, 96, 166, 0.25);
+    }
+    .ongoing-task-status {
+      background: linear-gradient(
+        to right,
+        rgba(204, 209, 15, 1) 4%,
+        rgba(244, 251, 30, 0.28) 1%
+      );
+      color: rgba(0, 0, 0, 1);
+    }
+    .overdue-task-status {
+      background: linear-gradient(
+        to right,
+        rgba(255, 156, 100, 1) 4%,
+        rgba(255, 156, 100, 0.27) 1%
+      );
+
+      color: rgba(0, 0, 0, 1);
+    }
+    .cal-event-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: black;
+      padding-left: 5px; /* Add some padding for the text */
+    }
+
+    .cal-day-badge {
+      margin-top: 4px;
+      // /* margin-left: 10px; */
+      margin-top: 2px;
+      margin-left: 0;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 14px;
+      text-align: center;
+
+      color: rgba(8, 36, 164, 0.7);
+      /* border-radius: 10px; */
+      float: left;
+      background: none;
+    }
+    .cal-day-cell {
+      background: rgba(255, 255, 255, 1);
+      text-align: center;
+      box-shadow: 0px 4px 4px 0px rgba(212, 212, 212, 0.18) inset;
+
+      height: 150px;
+      top: 375.8px;
+      left: 600px;
+      gap: 0px;
+      border-radius: 4px 0px 0px 0px;
+      opacity: 0px;
+    }
+    .cal-day-number {
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17.07px;
+      text-align: center;
+      color: black;
+
+      margin: 0%;
+      padding: 0;
+
+      float: unset;
+    }
+    .customEvent {
+      border: none;
+      padding: 0 8px;
+      font-size: 12px;
+      width: 100%;
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      font-family: Montserrat;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 17px;
+      text-align: start;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      img {
+        width: 20px; // Adjust image size
+        height: 20px;
+        margin-left: 5px;
+        border-radius: 50%; // Make the image circular
+      }
+    }
+    .custom-event-item {
+      margin-bottom: 5px; // Adjust spacing between events
+    }
+  }
+
+  .cal-week-view {
+    border-top: unset;
+
+    .cal-event {
+      background-color: transparent;
+      border: none;
+      color: rgba(0, 0, 0, 1);
+      font-family: Montserrat;
+      padding: 0 10px;
+    }
+
+    .document-event-type,
+    .policy-event-type,
+    .request-checklist-event-type,
+    .request-complaince-event-type,
+    .custom-event-type,
+    .ongoing-task-status,
+    .overdue-task-status {
+      // border-top-right-radius: 50px;
+      // border-bottom-right-radius: 50px;
+      border-radius: 10px;
+
+      color: rgba(0, 0, 0, 1);
+    }
+    .document-event-type {
+      background: linear-gradient(
+        90deg,
+        rgba(67, 114, 198, 1) 4%,
+        rgba(146, 181, 242, 0.45) 4%,
+        rgba(84, 105, 140, 0.45) 100%
+      );
+    }
+    .policy-event-type {
+      background: linear-gradient(
+        90deg,
+        rgba(109, 178, 132, 1) 4%,
+        rgba(132, 216, 160, 0.25) 4%,
+        rgba(70, 114, 84, 0.25) 100%
+      );
+    }
+    .request-checklist-event-type {
+      background: linear-gradient(
+        90deg,
+        rgba(47, 128, 156, 1) 4%,
+        rgba(76, 210, 255, 0.36) 0%,
+        rgba(46, 126, 153, 0.36) 100%
+      );
+    }
+    .request-complaince-event-type {
+      // background: linear-gradient(89.6deg, #A295F3 5%, #5E568D 5%);
+      background: linear-gradient(
+        to right,
+        rgba(162, 149, 243, 1) 4%,
+        rgba(162, 149, 243, 0.28) 4%
+      );
+    }
+    .custom-event-type {
+      background: linear-gradient(
+        to right,
+        rgba(8, 37, 171, 1) 4%,
+        rgba(26, 96, 166, 0.25) 1%
+      );
+    }
+    .ongoing-task-status {
+      background: linear-gradient(
+        to right,
+        rgba(204, 209, 15, 1) 4%,
+        rgba(244, 251, 30, 0.28) 1%
+      );
+      color: rgba(0, 0, 0, 1);
+    }
+    .overdue-task-status {
+      background: linear-gradient(
+        to right,
+        rgba(255, 156, 100, 1) 4%,
+        rgba(255, 156, 100, 0.27) 1%
+      );
+
+      color: rgba(0, 0, 0, 1);
+    }
+
+    .cal-header {
+      display: unset;
+    }
+    .cal-day-headers {
+      b,
+      strong {
+        font-family: Montserrat;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21.94px;
+        text-align: center;
+
+        color: rgba(0, 0, 0, 1);
+      }
+    }
+
+    .timezone-display {
+      display: flex;
+      justify-content: space-between;
+      padding-right: 20px;
+
+      .primary-time {
+        width: 50%;
+        text-align: left;
+      }
+
+      .secondary-time {
+        width: 50%;
+        text-align: right;
+        color: #888; /* Optional to make secondary timezone less prominent */
+      }
+    }
+  }
+  .cal-day-view {
+    .cal-event {
+      background-color: transparent;
+      border: none;
+      color: rgba(0, 0, 0, 1);
+      font-family: Montserrat;
+      padding: 0 15px;
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+      color: rgba(0, 0, 0, 1);
+    }
+
+    .document-event-type {
+      background: linear-gradient(
+        90deg,
+        rgba(67, 114, 198, 1) 1%,
+        rgba(146, 181, 242, 0.45) 1%,
+        rgba(84, 105, 140, 0.45) 100%
+      );
+    }
+    .policy-event-type {
+      background: linear-gradient(
+        90deg,
+        rgba(109, 178, 132, 1) 1%,
+        rgba(132, 216, 160, 0.25) 1%,
+        rgba(70, 114, 84, 0.25) 100%
+      );
+    }
+    .request-checklist-event-type {
+      background: linear-gradient(
+        90deg,
+        rgba(47, 128, 156, 1) 1%,
+        rgba(76, 210, 255, 0.36) 0%,
+        rgba(46, 126, 153, 0.36) 100%
+      );
+    }
+    .request-complaince-event-type {
+      background: linear-gradient(
+        90deg,
+        rgba(162, 149, 243, 1) 1%,
+        rgba(162, 149, 243, 0.28) 1%
+      );
+      color: rgba(0, 0, 0, 1);
+    }
+    .custom-event-type {
+      background: linear-gradient(
+        to right,
+        rgba(8, 37, 171, 1) 1%,
+        rgba(26, 96, 166, 0.25) 1%
+      );
+    }
+    .ongoing-task-status {
+      background: linear-gradient(
+        to right,
+        rgba(204, 209, 15, 1) 1%,
+        rgba(244, 251, 30, 0.28) 1%
+      );
+      color: rgba(0, 0, 0, 1);
+    }
+    .overdue-task-status {
+      background: linear-gradient(
+        to right,
+        rgba(255, 156, 100, 1) 1%,
+        rgba(255, 156, 100, 0.27) 1%
+      );
+
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+  .cal-time {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.63px;
+    text-align: center;
+
+    .cal-time-events {
+      /* border-color: #e1e1e1; */
+      border: 1px solid rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  ::ng-deep .ant-drawer-header,
+  .ant-list-split .ant-list-item {
+    border-bottom: unset;
+    // padding: 0;
+  }
+  .ant-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px;
+    color: rgba(0, 0, 0, 0.85);
+  }
+}
+
+.event-popup {
+  width: 450px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 24px 24px 48px 0px rgba(0, 0, 0, 0.25);
+
+  border-radius: 8px;
+  z-index: 1000;
+  border-radius: 8px;
+  .event-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid rgba(162, 165, 172, 0.5);
+    .high-priority-icon img {
+      width: 15px;
+      margin-right: 10px;
+    }
+    .event-title {
+      color: rgba(111, 126, 132, 1);
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 24px;
+      text-align: center;
+    }
+
+    .close-button {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+
+  .event-icon {
+    text-align: center;
+    border-right: 1px solid rgba(162, 165, 172, 0.5);
+  }
+
+  .event-popup-header-column-1 {
+    border-top-left-radius: 8px;
+  }
+  .document-event-type {
+    background-color: rgba(67, 114, 198, 1);
+  }
+  .policy-event-type {
+    background-color: rgba(109, 178, 132, 1);
+  }
+  .request-checklist-event-type {
+    background-color: rgba(47, 128, 156, 1);
+  }
+  .request-complaince-event-type {
+    background-color: rgba(162, 149, 243, 1);
+  }
+  .custom-event-type {
+    background-color: rgba(8, 37, 171, 1);
+  }
+  .ongoing-task-status {
+    background-color: rgba(204, 209, 15, 1);
+  }
+  .overdue-task-status {
+    background-color: rgba(255, 156, 100, 1);
+
+    color: rgba(0, 0, 0, 1);
+  }
+  .event-popup-des-column-1,
+  .event-popup-footer-column-1 {
+    border-right: 1px solid rgba(162, 165, 172, 0.5);
+  }
+  .event-popup-body {
+    // > nz-col > nz-row {
+    //   margin-bottom: 10px; // Adding space between rows
+    // }
+
+    > nz-col > nz-row > nz-col:nth-child(2) {
+      padding-left: 10px; // Adding space at the start of the content
+      margin-bottom: 10px;
+    }
+
+    .event-type,
+    .event-description,
+    .event-reminders {
+      width: 90%;
+      padding: 5px 10px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      background-color: #fff;
+      display: block;
+      margin-left: 5px;
+    }
+
+    .event-date {
+      color: rgba(111, 126, 132, 1);
+      margin-bottom: 5px;
+      margin-left: 5px;
+    }
+
+    .event-type {
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+
+    .event-description {
+      margin-bottom: 5px;
+    }
+
+    .event-reminders {
+      margin-bottom: 5px;
+    }
+  }
+
+  .event-popup-footer {
+    padding: 3px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}
+
+// @media screen and (min-width: 101vw) and (max-width: 110vw) {
+// //   .calendar-grid {
+// //     padding-left: 20px;
+// //   }
+// }
+// @media (max-width: 1284px) {
+// //   .calendar-grid {
+// //     padding-left: 50px;
+// //   }
+// }
+// @media (max-width: 1024px) {
+// //   .calendar-grid {
+// //     padding-left: 100px;
+// //   }
+//   .header-container {
+//     padding: 10px; /* Reduced padding */
+//     flex-direction: column; /* Stack elements */
+//   }
+
+//   .left-section,
+//   .right-section {
+//     justify-content: center; /* Center content */
+//     margin-bottom: 10px; /* Spacing between sections */
+//   }
+
+//   .icon-button img {
+//     width: 16px; /* Smaller icons for smaller screens */
+//     height: 16px;
+//   }
+
+//   .event-popup {
+//     max-width: 90%; /* Make popup fit nicely */
+//     margin: 0 auto; /* Center popup */
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .header-container {
+//     padding: 5px; /* Less padding */
+//   }
+
+//   .left-section,
+//   .right-section {
+//     flex-direction: column; /* Stack buttons */
+//     align-items: center; /* Center align */
+//   }
+
+//   .header-button {
+//     margin-bottom: 10px; /* Space between buttons */
+//   }
+
+//   .monthYear {
+//     font-size: 1.2rem; /* Smaller font size */
+//   }
+// }
+
+// @media (max-width: 576px) {
+//   .left-section,
+//   .right-section {
+//     width: 100%; /* Full width sections */
+//   }
+
+//   .header-container {
+//     text-align: center; /* Center align text */
+//   }
+
+//   .event-popup {
+//     width: 100%; /* Full width on mobile */
+//     padding: 10px; /* Extra padding */
+//   }
+// }

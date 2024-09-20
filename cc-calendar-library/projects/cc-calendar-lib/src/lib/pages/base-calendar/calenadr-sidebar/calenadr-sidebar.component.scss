@@ -1,0 +1,395 @@
+// Variables (optional, for easier theming and consistency)
+$sidebar-bg: #2d43a6e0;
+$sidebar-color: #fff;
+$sidebar-box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
+.sidebar {
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: scroll;
+  background: $sidebar-bg;
+  color: $sidebar-color;
+  padding: 10px 5px;
+  box-shadow: $sidebar-box-shadow;
+  border-top-right-radius: 25px;
+  // z-index:1000;
+
+  .sidebar-header {
+    span {
+      font-size: 25px;
+      margin-bottom: 1em;
+      color: #fff;
+      font-weight: 700;
+      line-height: 34.13px;
+      font: Montserrat;
+      i {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .list-group-item {
+    background: none;
+    border: none;
+  }
+
+  .btn-link {
+    color: $sidebar-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .create-button {
+    display: flex;
+    justify-content: center;
+
+    button {
+      width: 150px;
+      height: 58px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19.5px;
+      text-align: center;
+      color: rgba(83, 87, 89, 1);
+
+      outline: none;
+      border: none;
+      background: rgba(255, 255, 255, 1);
+      border-radius: 27px;
+
+      box-shadow: -24px -24px 48px 0px rgba(8, 36, 164, 0.7) inset,
+        12px 12px 24px 0px rgba(157, 168, 219, 1) inset,
+        24px 24px 48px 0px rgba(96, 114, 196, 0.14);
+
+      .plus-icon {
+        // width: 23.15px;
+        height: 22px;
+        top: 18.05px;
+        left: 20.37px;
+        gap: 0px;
+        opacity: 0px;
+      }
+      .down-icon {
+        width: 23.15px;
+        height: 9.4px;
+        top: 27.99px;
+        left: 176.07px;
+        gap: 0px;
+        border: 1px 0px 0px 0px;
+        opacity: 0px;
+      }
+      .title {
+        font-family: Inter;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 26.63px;
+        text-align: center;
+      }
+    }
+  }
+
+  .event-type {
+    span {
+      font-family: Montserrat;
+      color: rgba(255, 255, 255, 0.81);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 45px;
+      text-align: center;
+    }
+    button {
+      margin-bottom: 0.2em;
+    }
+
+    .document-event-button,
+    .policy-event-button,
+    .request-checklist-event-button,
+    .request-compliance-event-button,
+    .custom-event-button {
+      height: 27px;
+      gap: 0px;
+      opacity: 0px;
+      border: none;
+      outline: none;
+      text-align: start;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17.07px;
+      color: rgba(255, 255, 255, 1);
+    }
+    .document-event-button {
+      background: linear-gradient(89.39deg, #92b5f2 0%, #54698c 100%);
+    }
+    .policy-event-button {
+      background: linear-gradient(89.49deg, #84d8a0 0%, #467254 97.57%);
+    }
+    .request-checklist-event-button {
+      background: linear-gradient(89.38deg, #4cd2ff 0%, #2e7e99 97.73%);
+    }
+    .request-compliance-event-button {
+      background: linear-gradient(89.6deg, #a295f3 1.24%, #5e568d 97.57%);
+    }
+    .custom-event-button {
+      background: linear-gradient(89.56deg, #258bf1 0%, #15508b 100%);
+    }
+    // .selected {
+    //   height: 27px;
+    //   gap: 0px;
+    //   opacity: 0px;
+    //   border: none;
+    //   outline: none;
+    //   text-align: start;
+    //   font-family: Montserrat;
+    //   font-size: 14px;
+    //   font-weight: 500;
+    //   line-height: 17.07px;
+    //   color: rgba(162, 165, 172, 1);
+    //   background-color: transparent;
+    // }
+    .greyed-out-button-class {
+      height: 27px;
+      gap: 0px;
+      opacity: 0px;
+      border: none;
+      outline: none;
+      text-align: start;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17.07px;
+      color: rgba(162, 165, 172, 1);
+      background-color: transparent;
+    }
+  }
+
+  .custom-calendar-wrapper {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 0 0 2px 2px;
+    box-shadow: -24px -24px 48px 0px rgba(38, 62, 175, 0.65) inset,
+      12px 12px 24px 0px rgba(62, 83, 184, 1) inset,
+      12px 12px 24px 0px rgba(53, 75, 181, 0.38);
+    // padding: 8px 8px 0 8px;
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+
+      .month-year-display {
+        background-color: rgba(255, 255, 255, 1);
+        border-radius: 4px;
+        padding: 2px 5px;
+
+        span {
+          font-family: Inter;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 14.52px;
+          text-align: center;
+          color: rgba(0, 0, 0, 1);
+        }
+      }
+
+      .prev-button,
+      .next-button {
+        background: transparent;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+
+    ::ng-deep .ant-picker-calendar {
+      background: transparent !important;
+      line-height: 1;
+      &:hover {
+        background: transparent;
+      }
+
+      .ant-picker-panel {
+        border: none;
+      }
+    }
+
+    ::ng-deep .ant-picker-calendar-mini {
+      .ant-picker-calendar-header {
+        display: none; /* Hides the default header */
+      }
+
+      .ant-picker-panel {
+        background: transparent;
+      }
+    }
+
+    ::ng-deep
+      .ant-picker-cell:hover:not(.ant-picker-cell-selected):not(
+        .ant-picker-cell-range-start
+      ):not(.ant-picker-cell-range-end):not(
+        .ant-picker-cell-range-hover-start
+      ):not(.ant-picker-cell-range-hover-end)
+      .ant-picker-cell-inner {
+      background: transparent;
+    }
+
+    ::ng-deep .ant-picker-content {
+      height: unset;
+      tr:first-of-type td {
+        padding-top: 12px;
+      }
+
+      th {
+        color: rgba(255, 255, 255, 1);
+        font-family: Inter;
+        font-size: 11px;
+        font-weight: 800;
+        line-height: 13.31px;
+        text-align: center;
+        padding: 0px;
+      }
+      &.hover {
+        background: none !important;
+        border: none !important;
+      }
+    }
+
+    ::ng-deep .ant-picker-cell {
+      .ant-picker-cell-inner {
+        color: rgba(255, 255, 255, 1);
+        background: none;
+        font-family: Inter;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 13px;
+        text-align: center;
+      }
+    }
+
+    ::ng-deep .ant-picker-cell-in-view {
+      &:hover {
+        background: none !important;
+        border: none !important;
+      }
+    }
+
+    ::ng-deep
+      .ant-picker-cell-in-view.ant-picker-cell-today
+      .ant-picker-cell-inner::before {
+      border: none;
+    }
+
+    .calendar-wrapper {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .week-number-table {
+      th {
+        color: rgb(255, 255, 255);
+        font-family: Inter;
+        font-size: 11px;
+        font-weight: 800;
+        line-height: 28px;
+        text-align: center;
+      }
+
+      td {
+        background: rgba(255, 255, 255, 1);
+        font-family: Inter;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 13.31px;
+        text-align: center;
+        color: rgba(255, 107, 136, 1);
+        border-radius: 4px;
+        height: 30px; /* Make sure this height matches the calendar cell height */
+        width: 28px; /* Adjust width to match the design */
+        padding: 0 5px;
+      }
+    }
+
+    .nz-calendar {
+      width: auto;
+    }
+  }
+
+  nz-collapse {
+    background-color: transparent; // Background color of the collapse panel
+    border: none;
+
+    ::ng-deep .ant-collapse-header {
+      background-color: transparent; // Background color of the header
+
+      color: rgba(255, 255, 255, 1);
+
+      padding: 0;
+      font-family: Montserrat;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 18.29px;
+      text-align: start;
+    }
+    ::ng-deep .ant-collapse-content {
+      background-color: transparent;
+      border-top: none;
+    }
+    ::ng-deep .ant-collapse-item {
+      border-bottom: none;
+    }
+    ::ng-deep .ant-checkbox-inner {
+      border: none;
+    }
+    ::ng-deep .user-calendar-checkbox .ant-checkbox-inner {
+      background-color: #4285f4;
+      border: none;
+    }
+
+    .task-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        list-style: none;
+
+        label {
+          display: flex;
+          align-items: baseline;
+          color: rgba(255, 255, 255, 1);
+          font-family: Montserrat;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 18.29px;
+          text-align: center;
+        }
+        ::ng-deep .ongoing-task-checkbox .ant-checkbox-inner {
+          background-color: #ccd10f;
+          border: none;
+        }
+        ::ng-deep .overdue-task-checkbox .ant-checkbox-inner {
+          background-color: #e56203;
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just to avoid flashing scrollbar background */
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+.sidebar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

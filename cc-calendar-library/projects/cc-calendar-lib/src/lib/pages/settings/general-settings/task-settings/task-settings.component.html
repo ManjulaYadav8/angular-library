@@ -1,0 +1,48 @@
+<div class="form-item">
+  <span class="task_title">Task Settings</span>
+</div>
+<form [formGroup]="taskSettingsForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="setting_value">
+    <!-- Default Guest Permissions Select -->
+    <label for="Default Guest Permissions" class="timezone_labels"
+      >Default Guest Permissions</label
+    >
+    <div class="form-item">
+      <div class="task-form-item">
+        <nz-select
+          nzShowSearch
+          id="defaultGuestPermissions"
+          formControlName="default_guest_permissions"
+          class="custom-event-select"
+        >
+          <nz-option
+            *ngFor="let permission of guestPermissions"
+            [nzValue]="permission"
+            [nzLabel]="permission | titlecase"
+          ></nz-option>
+        </nz-select>
+      </div>
+    </div>
+
+    <!-- Calendar Invitation Select -->
+    <label for="Add invitations to calendars" class="timezone_labels"
+      >Add invitations to calendars</label
+    >
+    <div class="form-item">
+      <div class="task-form-item">
+        <nz-select
+          nzShowSearch
+          id="calendarInvitation"
+          formControlName="calendar_invitation"
+          class="custom-event-select"
+        >
+          <nz-option
+            *ngFor="let permission of guestPermissions"
+            [nzValue]="permission"
+            [nzLabel]="permission | titlecase"
+          ></nz-option>
+        </nz-select>
+      </div>
+    </div>
+  </div>
+</form>

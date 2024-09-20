@@ -1,0 +1,29 @@
+<!-- <nz-card> -->
+<div class="form-item">
+  <span class="view_title">View Settings</span>
+</div>
+<form [formGroup]="viewSettingForm" (ngSubmit)="onSubmit()">
+  <!-- Notification Alert Type Select -->
+  <div formGroupName="setting_value">
+    <div class="form-item">
+      <label nz-checkbox formControlName="view_completed_tasks"
+        >View Completed Tasks</label
+      >
+    </div>
+    <div class="form-item">
+      <label nz-checkbox formControlName="view_suspended_tasks"
+        >View Suspended Tasks</label
+      >
+    </div>
+    <div class="form-item">
+    <label nz-checkbox formControlName="view_completed_events"
+      >View Completed Events</label
+    >
+  </div>
+  <div class="form-item">
+    <label nz-checkbox formControlName="view_suspended_events"
+      >View Suspended Events</label
+    >
+  </div>
+  </div>
+</form>

@@ -1,0 +1,97 @@
+<div class="form-item">
+  <span class="reminder_title">Reminder Settings</span>
+</div>
+<form [formGroup]="reminderSettingsForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="setting_value">
+    <!-- Task Remider Setting -->
+    <div class="form-item">
+      <label for="Tasks" class="dpn_title">For Task</label><br />
+      <label for="Tasks" class="dpn_sub_title">Set Default Reminder:</label>
+      <div class="reminder-item-tasks" id="Tasks">
+        <div class="notification-item-tasks">
+          <nz-col [nzSpan]="24">
+            <nz-row>
+              <nz-col>
+                <button nz-button nzType="text" nzShape="circle">
+                  <i nz-icon nzType="bell"></i>
+                </button>
+              </nz-col>
+              <nz-col>
+                <div class="number-plate">
+                  <button nz-button (click)="decreaseReminderTimeTasks()">
+                    -
+                  </button>
+                  <span>{{ taskreminderTime }}</span>
+                  <button
+                    nz-button
+                    (click)="increaseReminderTimeTasks()"
+                    class="increment-button"
+                  >
+                    +
+                  </button>
+                </div>
+              </nz-col>
+              <nz-col>
+                <nz-select
+                  class="uom-list-select"
+                  formControlName="task_reminder_uom"
+                >
+                  <nz-option
+                    *ngFor="let unit of timeUnitsList"
+                    [nzValue]="unit"
+                    [nzLabel]="unit | titlecase"
+                  ></nz-option>
+                </nz-select>
+              </nz-col>
+            </nz-row>
+          </nz-col>
+        </div>
+      </div>
+    </div>
+    <!-- Event Remider Setting -->
+    <div class="form-item">
+      <label for="Events" class="dpn_title">For Events</label><br />
+      <label for="Events" class="dpn_sub_title">Set Default Reminder:</label>
+      <div class="reminder-item-events" id="Events">
+        <div class="notification-item-events">
+          <nz-col [nzSpan]="24">
+            <nz-row>
+              <nz-col>
+                <button nz-button nzType="text" nzShape="circle">
+                  <i nz-icon nzType="bell"></i>
+                </button>
+              </nz-col>
+              <nz-col>
+                <div class="number-plate">
+                  <button nz-button (click)="decreaseReminderTimeEvent()">
+                    -
+                  </button>
+                  <span>{{ eventreminderTime }}</span>
+                  <button
+                    nz-button
+                    (click)="increaseReminderTimeEvent()"
+                    class="increment-button"
+                  >
+                    +
+                  </button>
+                </div>
+              </nz-col>
+              <nz-col>
+                <nz-select
+                  class="uom-list-select"
+                  formControlName="event_reminder_uom"
+                >
+                  <nz-option
+                    *ngFor="let unit of timeUnitsList"
+                    [nzValue]="unit"
+                    [nzLabel]="unit | titlecase"
+                  ></nz-option>
+                </nz-select>
+              </nz-col>
+            </nz-row>
+          </nz-col>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

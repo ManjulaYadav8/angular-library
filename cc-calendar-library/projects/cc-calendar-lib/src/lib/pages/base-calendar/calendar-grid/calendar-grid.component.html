@@ -1,0 +1,407 @@
+<div class="calendar-grid">
+  <nz-row class="header-container">
+    <nz-col>
+      <div class="collapsable-menu" *ngIf="sidebarCollapsed">
+        <span>
+          <i nz-icon nzType="menu" (click)="toggleSidebar()"></i>
+          Calendar
+        </span>
+        <div class="monthYear" mwlCalendarToday [(viewDate)]="viewDate">
+          {{ viewDate | calendarDate : view + "ViewTitle" : "en" }}
+        </div>
+      </div>
+
+      <div class="left-section" *ngIf="!sidebarCollapsed">
+        <div class="monthYear" mwlCalendarToday [(viewDate)]="viewDate">
+          {{ viewDate | calendarDate : view + "ViewTitle" : "en" }}
+        </div>
+        <button
+          nz-button
+          nzType="text"
+          class="previous"
+          mwlCalendarPreviousView
+          [view]="view"
+          [(viewDate)]="viewDate"
+        >
+          <img src="../../assets/icons/left_arrow_vector.png" />
+        </button>
+        <button
+          nz-button
+          nzType="text"
+          class="next"
+          mwlCalendarNextView
+          [view]="view"
+          [(viewDate)]="viewDate"
+        >
+          <img src="../../assets/icons/right_arrow_vector.png" />
+        </button>
+      </div>
+    </nz-col>
+    <nz-col class="right-section">
+      <button nz-button nzType="text" class="icon-button me-2">
+        <img src="../../assets/icons/material-symbols_search.png" />
+      </button>
+      <button
+        nz-button
+        nzType="text"
+        class="icon-button me-2"
+        routerLink="/settings"
+      >
+        <img src="../../assets/icons/carbon_calendar-settings.png" />
+      </button>
+      <button
+        nz-button
+        nz-dropdown
+        [nzDropdownMenu]="menu"
+        [nzPlacement]="'bottomCenter'"
+        nzTrigger="click"
+        class="header-button me-2"
+      >
+        {{ currentView | titlecase }} <i nz-icon nzType="down"></i>
+      </button>
+      <nz-dropdown-menu #menu="nzDropdownMenu" class="calendar-view-dropdown">
+        <ul nz-menu>
+          <li nz-menu-item (click)="setView(CalendarView.Month)">
+            <a>Month</a>
+          </li>
+          <li nz-menu-item (click)="setView(CalendarView.Week)">
+            <a>Week</a>
+          </li>
+          <li nz-menu-item (click)="setView(CalendarView.Day)">
+            <a>Day</a>
+          </li>
+          <!-- <li nz-menu-item>
+            <a>Year</a>
+          </li> -->
+        </ul>
+      </nz-dropdown-menu>
+
+      <button
+        nz-button
+        class="header-button me-2"
+        (click)="setView(CalendarView.Day)"
+      >
+        Today
+      </button>
+      <button
+        nz-button
+        nzType="text"
+        class="icon-button me-1"
+        style="margin-bottom: 0.5rem"
+      >
+        <img src="../../assets/icons/notes-icon1.png" />
+      </button>
+      <button nz-button nzType="text" class="icon-button me-1">
+        <img src="../../assets/icons/Vector.png" />
+      </button>
+    </nz-col>
+  </nz-row>
+  <br />
+  <nz-row>
+    <ng-template #customMonthCellTemplate let-day="day" let-locale="locale">
+      <nz-list (click)="hidePopups()">
+        <span
+          class="cal-day-badge"
+          *ngIf="day.badgeTotal > 3"
+          (click)="expandHiddenEvents(day.events, $event)"
+        >
+          +{{ day.badgeTotal - 3 }}</span
+        >
+        <span class="cal-day-number">{{
+          day.date | calendarDate : "monthViewDayNumber" : locale
+        }}</span>
+        <nz-list-item *ngFor="let e of getVisibleEvents(day.events)">
+          <span
+            class="customEvent"
+            (click)="eventClick(e, $event)"
+            [ngClass]="e.cssClass"
+          >
+            {{ e.title | titlecase | slice : 0 : 20
+            }}{{ e.title.length > 20 ? "..." : "" }}
+          </span>
+        </nz-list-item>
+      </nz-list>
+    </ng-template>
+
+    <div [ngSwitch]="view" class="calendar-section">
+      <mwl-calendar-month-view
+        *ngSwitchCase="CalendarView.Month"
+        class="custom-calendar"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventClicked)="handleEvent($event.event, $event.sourceEvent)"
+        [cellTemplate]="customMonthCellTemplate"
+      >
+      </mwl-calendar-month-view>
+
+      <mwl-calendar-week-view
+        *ngSwitchCase="CalendarView.Week"
+        class="custom-calendar"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventClicked)="handleEvent($event.event, $event.sourceEvent)"
+        [hourSegments]="2"
+      ></mwl-calendar-week-view>
+
+      <ng-template #dayColumnTemplate let-day="day">
+        <div class="new-column">
+          <!-- Custom content for the new column -->
+          <div>{{ day.date | date : "EEEE" }} (Custom Column)</div>
+          <div>
+            {{ getTimeInTimezone(day.date, secondaryTimezone) }}
+            <!-- Secondary timezone -->
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template #hourColumnTemplate let-hour="hour">
+        <P>timezone</P>
+        <div class="timezone-display">
+          <div class="primary-time">
+            {{ getTimeInTimezone(hour.date, primaryTimezone) }} GMT-05
+          </div>
+          <div class="secondary-time">
+            {{ getTimeInTimezone(hour.date, secondaryTimezone) }} GMT+05:30
+          </div>
+        </div>
+      </ng-template>
+
+      <mwl-calendar-day-view
+        *ngSwitchCase="CalendarView.Day"
+        class="custom-calendar"
+        [viewDate]="viewDate"
+        [events]="events"
+        [hourSegments]="2"
+        (eventClicked)="handleEvent($event.event, $event.sourceEvent)"
+      ></mwl-calendar-day-view>
+      <!-- <app-calendar-year-view
+        [year]="viewDate.getFullYear()"
+      ></app-calendar-year-view> -->
+
+      <br />
+    </div>
+
+    <div [ngStyle]="popupStyle" class="event-popup">
+      <nz-row *ngIf="showEventPopup">
+        <nz-col [nzSpan]="24">
+          <nz-row>
+            <nz-col [nzSpan]="24">
+              <nz-row>
+                <nz-col
+                  [nzSpan]="3"
+                  [ngClass]="
+                    selectedEvent.isTask
+                      ? determineTaskCssClass(
+                          selectedEvent.eventTaskStatusTypeId
+                        )
+                      : determineCssClass(selectedEvent.eventTypeId)
+                  "
+                  class="event-popup-header-column-1"
+                ></nz-col>
+                <nz-col [nzSpan]="21">
+                  <div class="event-popup-header">
+                    <div>
+                      <span
+                        class="high-priority-icon"
+                        *ngIf="
+                          selectedEvent.isTask && selectedEvent.isHighPriority
+                        "
+                        ><img src="../../../../assets/icons/highpriority.png"
+                      /></span>
+                      <span class="event-title">{{
+                        selectedEvent.title | titlecase
+                      }}</span>
+                    </div>
+
+                    <button
+                      class="close-button"
+                      (click)="showEventPopup = false"
+                    >
+                      X
+                    </button>
+                  </div>
+                </nz-col>
+              </nz-row>
+            </nz-col>
+          </nz-row>
+          <nz-row class="event-popup-body">
+            <nz-col [nzSpan]="24">
+              <nz-row>
+                <nz-col [nzSpan]="3" class="event-icon"></nz-col>
+                <nz-col [nzSpan]="21">
+                  <span class="event-date" *ngIf="selectedEvent.isAllDayEvent">
+                    {{
+                      formatEventRange(selectedEvent.start, selectedEvent.end)
+                    }}</span
+                  >
+                  <span class="event-date" *ngIf="!selectedEvent.isAllDayEvent">
+                    {{
+                      formatEventDateTime(
+                        selectedEvent.start,
+                        selectedEvent.end
+                      )
+                    }}</span
+                  >
+                </nz-col>
+              </nz-row>
+              <nz-row *ngIf="!selectedEvent.isTask">
+                <nz-col [nzSpan]="3" class="event-icon">
+                  <img src="../../../../assets/icons/event-type.png" />
+                </nz-col>
+                <nz-col [nzSpan]="21">
+                  <span class="event-type">{{
+                    selectedEvent.eventType | titlecase
+                  }}</span>
+                </nz-col>
+              </nz-row>
+              <nz-row class="event-popup-header-column-1">
+                <nz-col [nzSpan]="3" class="event-icon">
+                  <img src="../../../../assets/icons/event-description.png" />
+                </nz-col>
+                <nz-col [nzSpan]="21">
+                  <span class="event-description">
+                    {{ selectedEvent.description | titlecase }}</span
+                  >
+                </nz-col>
+              </nz-row>
+              <nz-row>
+                <nz-col [nzSpan]="3" class="event-icon">
+                  <img
+                    src="../../../../assets/icons/event-notification-icon.png"
+                  />
+                </nz-col>
+                <nz-col [nzSpan]="21">
+                  <span class="event-reminders">
+                    {{ selectedEvent.eventReminderDetails?.[0]?.reminderInterval }}
+                    {{ selectedEvent.eventReminderDetails?.[0]?.reminderUOM | titlecase }}
+                    Before</span
+                  >
+                </nz-col>
+              </nz-row>
+            </nz-col>
+          </nz-row>
+          <nz-row>
+            <nz-col [nzSpan]="24">
+              <nz-row>
+                <nz-col
+                  [nzSpan]="3"
+                  class="event-popup-footer-column-1"
+                ></nz-col>
+                <nz-col [nzSpan]="21">
+                  <div class="event-popup-footer p-2">
+                    <button
+                      *ngIf="selectedEvent.isTask"
+                      nz-button
+                      nzType="default"
+                      (click)="markAsTaskComplete(selectedEvent)"
+                    >
+                      Complete
+                    </button>
+                  </div>
+                </nz-col>
+              </nz-row>
+            </nz-col>
+          </nz-row>
+        </nz-col>
+      </nz-row>
+      <nz-row *ngIf="isVisibleHiddenEvents">
+        <nz-col [nzSpan]="24">
+          <nz-row>
+            <nz-col [nzSpan]="24">
+              <nz-row>
+                <nz-col
+                  [nzSpan]="3"
+                  style="
+                    background-color: rgba(64, 148, 193, 1);
+                    border-top-left-radius: 8px;
+                  "
+                ></nz-col>
+                <nz-col [nzSpan]="21">
+                  <div class="event-popup-header">
+                    <span class="event-title">{{
+                      allEventsIntheDay[0].start | date : "fullDate"
+                    }}</span>
+                    <button
+                      class="close-button"
+                      (click)="isVisibleHiddenEvents = false"
+                    >
+                      X
+                    </button>
+                  </div>
+                </nz-col>
+              </nz-row>
+            </nz-col>
+          </nz-row>
+          <nz-row class="event-popup-body">
+            <nz-col [nzSpan]="24">
+              <nz-row *ngFor="let event of allEventsIntheDay">
+                <nz-col [nzSpan]="3" class="event-icon"> </nz-col>
+                <nz-col [nzSpan]="21">
+                  <span class="event-type" (click)="eventClick(event, $event)">
+                    {{ event.title }}</span
+                  >
+                </nz-col>
+              </nz-row>
+            </nz-col>
+          </nz-row>
+          <nz-row>
+            <nz-col [nzSpan]="24">
+              <nz-row>
+                <nz-col
+                  [nzSpan]="3"
+                  class="event-popup-footer-column-1"
+                ></nz-col>
+                <nz-col [nzSpan]="21">
+                  <div class="event-popup-footer p-2"></div>
+                </nz-col>
+              </nz-row>
+            </nz-col>
+          </nz-row>
+        </nz-col>
+      </nz-row>
+      <!-- <nz-row *ngIf="isVisibleHiddenEvents">
+        <nz-col [nzSpan]="24">
+          <nz-row>
+            <nz-col
+              [nzSpan]="3"
+              class="event-popup-header-column-1"
+              style="background-color: rgba(64, 148, 193, 1)"
+            ></nz-col>
+            <nz-col [nzSpan]="21">
+              <div class="event-popup-header">
+                <span class="event-title">{{
+                  allEventsIntheDay[0].start | date : "fullDate"
+                }}</span>
+                <button
+                  class="close-button"
+                  (click)="isVisibleHiddenEvents = false"
+                >
+                  X
+                </button>
+              </div>
+            </nz-col>
+          </nz-row>
+          <nz-row>
+            <nz-col [nzSpan]="3" class="event-popup-des-column-1"> </nz-col>
+            <nz-col [nzSpan]="21" class="event-popup-body">
+              <nz-row
+                class="event-reminders"
+                *ngFor="let event of allEventsIntheDay"
+              >
+                {{ event.title }}
+              </nz-row>
+            </nz-col>
+          </nz-row>
+          <nz-row>
+            <nz-col [nzSpan]="3" class="event-popup-footer-column-1"></nz-col>
+            <nz-col [nzSpan]="21">
+              <div class="event-popup-footer p-2"></div>
+            </nz-col>
+          </nz-row>
+        </nz-col>
+      </nz-row> -->
+    </div>
+  </nz-row>
+</div>

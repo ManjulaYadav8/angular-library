@@ -1,0 +1,123 @@
+<!-- <nz-card> -->
+  <div class="form-item">
+    <span class="title">Event Settings</span>
+  </div>
+  <form [formGroup]="eventSettingsForm" (ngSubmit)="onSubmit()">
+    <!-- Add Secondary Time Zone -->
+  
+    <!-- Primary Timezone Select -->
+    <div class="form-item">
+      <div class="event-form-item">
+        <label for="Default Guest Permissions">Default Guest Permissions</label>
+        <nz-select
+          nzShowSearch
+          id="primaryTimezone"
+          formControlName="defaultGuestPermissions"
+          class="custom-event-select"
+        >
+          <nz-option
+            *ngFor="let permission of guestPermissions"
+            [nzValue]="permission"
+            [nzLabel]="permission | titlecase"
+          ></nz-option>
+        </nz-select>
+      </div>
+    </div>
+  
+    <!-- Secondary Timezone Select (Disabled if not checked) -->
+    <div class="form-item">
+      <div class="event-form-item">
+        <label for="Add invitations to calendars"
+          >Add invitations to calendars</label
+        >
+        <nz-select
+          nzShowSearch
+          id="secondaryTimezone"
+          formControlName="calendarInvitations"
+          class="custom-event-select"
+        >
+          <nz-option
+            *ngFor="let permission of guestPermissions"
+            [nzValue]="permission"
+            [nzLabel]="permission | titlecase"
+          ></nz-option>
+        </nz-select>
+      </div>
+    </div>
+  
+    <!-- Help Link -->
+    <div class="form-item">
+      <div class="reminder-form-item">
+        <label for="Add invitations to calendars"
+          >Set default reminders for events</label
+        >
+        <div class="notification-form-item">
+          <!-- <nz-col
+            [nzSpan]="24"
+            *ngFor="
+              let reminderDetail of defaultReminders.controls;
+              let i = index
+            "
+          > -->
+          <nz-col [nzSpan]="24">
+            <nz-row>
+              <nz-col>
+                <!-- Bell Icon -->
+                <button nz-button nzType="text" nzShape="circle">
+                  <i nz-icon nzType="bell"></i>
+                </button>
+              </nz-col>
+              <nz-col>
+                <div class="number-plate">
+                  <!-- Decrement Button -->
+                  <button nz-button (click)="decreaseReminderTime()">-</button>
+  
+                  <!-- Number Input -->
+                  <span>{{ reminderTime }}</span>
+  
+                  <!-- Increment Button -->
+                  <button
+                    nz-button
+                    (click)="increaseReminderTime()"
+                    class="increment-button"
+                  >
+                    +
+                  </button>
+                </div>
+              </nz-col>
+              <nz-col>
+                <!-- Time Unit Selector -->
+                <nz-select [(ngModel)]="timeUnit" class="uom-list-select">
+                  <nz-option
+                    *ngFor="let unit of timeUnitsList"
+                    [nzValue]="unit"
+                    [nzLabel]="unit | titlecase"
+                  ></nz-option>
+                </nz-select>
+              </nz-col>
+              <!-- <nz-col>
+                <img
+                  [ngClass]="{
+                    'plus-style': i === defaultReminders.length - 1,
+                    'minus-style': i !== defaultReminders.length - 1
+                  }"
+                  [src]="
+                    i === defaultReminders.length - 1
+                      ? '../../../../assets/icons/create-event/+.png'
+                      : '../../../../assets/icons/create-event/x.png'
+                  "
+                  (click)="
+                    i === defaultReminders.length - 1
+                      ? addReminder()
+                      : removeReminder(i)
+                  "
+                />
+              </nz-col> -->
+            </nz-row>
+          </nz-col>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- </nz-card> -->
+  

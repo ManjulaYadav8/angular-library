@@ -1,0 +1,76 @@
+<!-- <nz-card> -->
+<div class="form-item">
+  <span class="timezone_title">Time Zone</span>
+</div>
+<form [formGroup]="timezoneForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="setting_value">
+    <!-- Primary Timezone Select -->
+    <label for="primary_timezone" class="timezone_labels"
+      >Primary Time Zone</label
+    >
+    <div class="form-item">
+      <div class="timezone-form-item">
+        <nz-select
+          nzShowSearch
+          nzAllowClear
+          id="primary_timezone"
+          formControlName="primary_timezone"
+          nzPlaceHolder="Select your primary time zone"
+          class="custom-timezone-select"
+        >
+          <nz-option
+            *ngFor="let tz of timezones"
+            [nzValue]="tz.value"
+            [nzLabel]="tz.label"
+          ></nz-option>
+        </nz-select>
+      </div>
+    </div>
+
+    <!-- Secondary Timezone Select (Disabled if not checked) -->
+    <label for="secondary_timezone" class="timezone_labels"
+      >Secondary Time Zone</label
+    >
+    <div class="form-item-s">
+      <div
+        class="timezone-form-item"
+        [ngClass]="
+          !timezoneForm.get('add_secondary_timezone')?.value
+            ? 'timezone-form-item'
+            : 'disable-timezone-form-item'
+        "
+      >
+        <nz-select
+          nzShowSearch
+          nzAllowClear
+          id="secondary_timezone"
+          formControlName="secondary_timezone"
+          nzPlaceHolder="Not Selected"
+          class="custom-timezone-select"
+          [nzDisabled]="!timezoneForm.get('add_secondary_timezone')?.value"
+        >
+          <nz-option
+            *ngFor="let tz of timezones"
+            [nzValue]="tz.value"
+            [nzLabel]="tz.label"
+          ></nz-option>
+        </nz-select>
+      </div>
+      <!-- <div class="form-item"> -->
+      <label nz-checkbox formControlName="add_secondary_timezone"
+        >Add Secondary time zone</label
+      >
+      <!-- </div> -->
+    </div>
+
+    <br />
+    <div class="form-item">
+      <div class="info-form-item">
+        <i nz-icon nzType="info-circle"></i>
+        <a href="https://www.example.com" target="_blank">
+          Learn more about Compliance Cart Calendar and time zones
+        </a>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,299 @@
+.settings-header {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.17);
+  background: rgba(255, 255, 255, 1);
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  .ant-page-header-heading-title {
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 32.91px;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.51);
+  }
+  .ant-page-header-back {
+    // border: 2.5px solid rgba(0, 0, 0, 0.56);
+    color: rgba(0, 0, 0, 0.51);
+  }
+}
+
+// .settings-container {
+//   display: flex;
+//   height: 100vh;
+//   .settings-sidebar {
+//     width: 240px;
+//     background-color: rgba(255, 255, 255, 1);
+//     border: 1px solid rgba(0, 0, 0, 0.1);
+//     .ant-menu-inline.ant-menu-root .ant-menu-submenu-title {
+//       font-family: Montserrat;
+//       font-size: 20px;
+//       font-weight: 700;
+//       line-height: 20px;
+//       text-align: left;
+//       color: rgba(0, 0, 0, 0.61);
+//       border-radius: 0px 10px 10px 0px;
+//       opacity: 0px;
+//       background: rgba(40, 59, 148, 0.24);
+//       box-shadow: 12px 12px 24px 0px rgba(40, 59, 148, 0.22),
+//         -12px -12px 24px 0px rgba(40, 59, 148, 0.17) inset,
+//         12px 12px 24px 0px rgba(160, 167, 191, 0.42) inset;
+//     }
+
+//     .custom-menu {
+//       .ant-menu-sub.ant-menu-inline {
+//         background-color: rgba(255, 255, 255, 1);
+//       }
+//       .ant-menu-item {
+//         position: relative;
+//         padding-left: 30px;
+
+//         // Line beside the menu item
+//         &::before {
+//           content: "";
+//           position: absolute;
+//           left: 17px;
+//           top: 0;
+//           bottom: 0;
+
+//           background-color: transparent;
+//           transition: background-color 0.3s;
+//           border: 1px solid rgba(0, 0, 0, 0.29);
+//         }
+
+//         // Dot beside the active menu item
+//         &.ant-menu-item-selected {
+//           &::before {
+//             // background-color: #258bf1;
+//             background-color: transparent;
+//           }
+
+//           &::after {
+//             content: "";
+//             position: absolute;
+//             left: 10px;
+//             top: 50%;
+//             transform: translateY(-50%);
+//             width: 15px;
+//             height: 15px;
+//             border-radius: 50%;
+//             border-right: unset;
+//             background-color: rgba(40, 59, 148, 0.9843);
+//           }
+//         }
+
+//         &:hover {
+//           &::before {
+//             background-color: #e0e0e0;
+//           }
+//         }
+//       }
+//       .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active,
+//       .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open,
+//       .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
+//       .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
+//       .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active,
+//       .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open,
+//       .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected,
+//       .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover,
+//       .ant-menu-submenu:hover
+//         > .ant-menu-submenu-title
+//         > .ant-menu-submenu-arrow,
+//       .ant-menu-submenu:hover
+//         > .ant-menu-submenu-title
+//         > .ant-menu-submenu-expand-icon,
+//       .ant-menu-vertical .ant-menu-submenu-selected,
+//       .ant-menu-vertical-left .ant-menu-submenu-selected,
+//       .ant-menu-vertical-right .ant-menu-submenu-selected {
+//         color: unset;
+//       }
+
+//       .ant-menu-inline .ant-menu-item-selected,
+//       .ant-menu-inline .ant-menu-item-active {
+//         background-color: transparent; /* Remove background color */
+//       }
+
+//       .ant-menu-submenu-arrow {
+//         color: black;
+//       }
+
+//       .ant-menu-title-content {
+//         font-family: Montserrat;
+//         font-size: 16px;
+//         font-weight: 500;
+//         line-height: 24px;
+//         text-align: left;
+//         color: rgba(0, 0, 0, 1);
+//       }
+//       .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+//         background-color: transparent;
+//       }
+//     }
+//   }
+
+//   .settings-content {
+//     flex-grow: 1;
+//     padding: 20px;
+//   }
+// }
+
+.settings-container {
+  display: flex;
+  height: 100vh; // Full height of the viewport
+
+  .settings-sidebar {
+    width: 240px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    .ant-menu-inline.ant-menu-root .ant-menu-submenu-title {
+      font-family: Montserrat;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 20px;
+      text-align: left;
+      color: rgba(0, 0, 0, 0.61);
+      border-radius: 0px 10px 10px 0px;
+      background: rgba(40, 59, 148, 0.24);
+      box-shadow: 12px 12px 24px 0px rgba(40, 59, 148, 0.22),
+        -12px -12px 24px 0px rgba(40, 59, 148, 0.17) inset,
+        12px 12px 24px 0px rgba(160, 167, 191, 0.42) inset;
+    }
+
+    .custom-menu {
+      .ant-menu-sub.ant-menu-inline {
+        background-color: rgba(255, 255, 255, 1);
+      }
+
+      .ant-menu-item {
+        position: relative;
+        padding-left: 30px;
+
+        // Line beside the menu item
+        &::before {
+          content: "";
+          position: absolute;
+          left: 17px;
+          top: 0;
+          bottom: 0;
+          background-color: transparent;
+          transition: background-color 0.3s;
+          border: 1px solid rgba(0, 0, 0, 0.29);
+        }
+
+        // Dot beside the active menu item
+        &.ant-menu-item-selected {
+          &::before {
+            background-color: transparent;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: rgba(40, 59, 148, 0.9843);
+          }
+        }
+
+        &:hover {
+          &::before {
+            background-color: #e0e0e0;
+          }
+        }
+      }
+
+      .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active,
+      .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open,
+      .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
+      .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
+      .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active,
+      .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open,
+      .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected,
+      .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover,
+      .ant-menu-submenu:hover
+        > .ant-menu-submenu-title
+        > .ant-menu-submenu-arrow,
+      .ant-menu-submenu:hover
+        > .ant-menu-submenu-title
+        > .ant-menu-submenu-expand-icon,
+      .ant-menu-vertical .ant-menu-submenu-selected,
+      .ant-menu-vertical-left .ant-menu-submenu-selected,
+      .ant-menu-vertical-right .ant-menu-submenu-selected {
+        color: unset;
+      }
+
+      .ant-menu-inline .ant-menu-item-selected,
+      .ant-menu-inline .ant-menu-item-active {
+        background-color: transparent; // Remove background color
+      }
+
+      .ant-menu-submenu-arrow {
+        color: black;
+      }
+
+      .ant-menu-title-content {
+        font-family: Montserrat;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        text-align: left;
+        color: rgba(0, 0, 0, 1);
+      }
+
+      .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+        background-color: transparent;
+      }
+    }
+  }
+
+  .settings-content {
+    flex-grow: 1;
+    padding: 20px;
+    max-height: 100vh; // Ensure that it respects the height of the viewport
+    overflow-y: scroll; // Enable scrolling
+
+    // Hide scrollbar for all browsers
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE and Edge
+
+    &::-webkit-scrollbar {
+      display: none; // Chrome, Safari, and Opera
+    }
+
+    .span {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 15px;
+      .save-btn {
+        background: #0825ab;
+        box-shadow: -12px -12px 24px 0px #0000000a inset;
+        box-shadow: 0px 4px 4px 0px #00000040;
+        box-shadow: 12px 12px 24px 0px #00000003 inset;
+        width: 87px;
+        height: 24px;
+        border-radius: 8px;
+        color: #e0e0e0;
+        border: none;
+      }
+      .cancel-btn {
+        // background: #FFFFFF;
+        width: 75px;
+        height: 24px;
+        border-radius: 8px;
+        border: none;
+        color: #252525;
+        box-shadow: -12px -12px 24px 0px #0000000A inset;
+        box-shadow: 0px 4px 4px 0px #00000040;
+        box-shadow: 12px 12px 24px 0px #00000003 inset;
+        
+      }
+    }
+  }
+}

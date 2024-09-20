@@ -1,0 +1,13 @@
+<nz-row class="year-calendar">
+  <nz-col nzSpan="6" *ngFor="let month of months">
+    <h5>{{ monthNames[month] }}</h5>
+    <nz-calendar
+      [nzValue]="getMonthStartDate(month)"
+      nzFullscreen="false"
+      class="month-calendar"
+      (nzSelectChange)="onDateSelect($event)"
+      [nzCustomHeader]="customHeader"
+    ></nz-calendar>
+    <ng-template #customHeader> </ng-template>
+  </nz-col>
+</nz-row>

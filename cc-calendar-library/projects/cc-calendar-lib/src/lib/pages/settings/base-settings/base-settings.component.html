@@ -1,0 +1,111 @@
+<!-- <nz-page-header class="settings-header" nzBackIcon (click)="navigateTo('calendar')" nzTitle="Settings">
+</nz-page-header>
+<div class="settings-container">
+  <div class="settings-sidebar">
+    <ul nz-menu nzMode="inline" class="custom-menu">
+      <li nz-submenu [(nzOpen)]="openMap['sub1']" (nzOpenChange)="openHandler('sub1')" nzTitle="General">
+        <ul>
+          <li nz-menu-item nzSelected (click)="navigateTo('task1')">
+            Time Zone
+          </li>
+          <li nz-menu-item (click)="navigateTo('task1')">Event Settings</li>
+          <li nz-menu-item (click)="navigateTo('task1')">Task Settings</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="settings-content">
+    <div class="timezone-settings">
+      <app-timezone-settings></app-timezone-settings>
+    </div>
+    <br />
+    <div class="event-settings">
+      <app-event-settings></app-event-settings>
+    </div>
+   
+    <router-outlet></router-outlet>
+  </div>
+</div> -->
+
+<nz-page-header
+  class="settings-header"
+  nzBackIcon
+  (click)="navigateTo('calendar')"
+  nzTitle="Settings"
+>
+</nz-page-header>
+
+<div class="settings-container">
+  <!-- Left Sidebar -->
+  <div class="settings-sidebar">
+    <ul nz-menu nzMode="inline" class="custom-menu">
+      <li
+        nz-submenu
+        [(nzOpen)]="openMap['sub1']"
+        (nzOpenChange)="openHandler('sub1')"
+        nzTitle="General"
+      >
+        <ul>
+          <li nz-menu-item nzSelected (click)="navigateTo('timezone')">
+            Time Zone
+          </li>
+          <!-- <li nz-menu-item (click)="navigateTo('event')">Event Settings</li> -->
+          <li nz-menu-item (click)="navigateTo('task')">Task Settings</li>
+          <li nz-menu-item (click)="navigateTo('notification')">
+            Notification Settings
+          </li>
+          <li nz-menu-item (click)="navigateTo('viewSetting')">
+            View Settings
+          </li>
+          <li nz-menu-item (click)="navigateTo('reminderSetting')">
+            Reminder Settings
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Right Content Panel -->
+  <div #settingsContent class="settings-content">
+    <span class="span">
+      <button class="cancel-btn" (click)="cancelSetting()">Cancel</button>
+      <button (click)="getAllSettingsServiceData()" class="save-btn">Save</button>
+    </span>
+    <div #timezoneSettings class="timezone-settings">
+      <app-timezone-settings
+        [baseSettingLookup]="timezoneSettingLookup"
+      ></app-timezone-settings>
+    </div>
+    <br />
+    <!-- <div #eventSettings class="event-settings">
+      <app-event-settings></app-event-settings>
+    </div>
+    <br /> -->
+    <div #taskSettings class="task-settings">
+      <app-task-settings
+        [baseSettingLookup]="taskSettingLookup"
+      ></app-task-settings>
+    </div>
+    <br />
+    <div #notificationSettings class="notification-settings">
+      <app-notification-settings
+        [baseSettingLookup]="notificationSettingLookup"
+      ></app-notification-settings>
+    </div>
+    <br />
+    <div #viewSettings class="view-settings">
+      <app-view-settings
+        [baseSettingLookup]="viewSettingLookup"
+      ></app-view-settings>
+    </div>
+    <br />
+    <div #reminderSettings class="reminder-settings">
+      <app-reminder-settings
+        [baseSettingLookup]="reminderSettingLookup"
+      ></app-reminder-settings>
+    </div>
+    <!-- <router-outlet></router-outlet> -->
+    <br />
+  </div>
+</div>

@@ -1,0 +1,145 @@
+.reminder_title {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 25px;
+  color: rgba(0, 0, 0, 1);
+  display: flex;
+  width: 313px;
+  height: 39px;
+  align-items: center;
+  background: linear-gradient(89.39deg, #a2a5ac 0%, #ffffff 100%);
+}
+.dpn_title {
+  font-family: Montserrat;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 23.16px;
+  text-align: left;
+  color: #0000009c;
+  width:auto;
+  height: 23px;
+}
+.dpn_sub_title {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.5px;
+  text-align: left;
+  width:auto;
+  height: 20px;
+  color: #0000007a;
+}
+.form-item {
+  margin-top: 1em;
+  .ant-checkbox + span {
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.61);
+  }
+  .event-form-item {
+    width: 30%;
+    padding: 5px 10px;
+    box-shadow: -24px -24px 48px 0px rgba(0, 0, 0, 0.06) inset,
+      12px 12px 24px 0px rgba(0, 0, 0, 0.05) inset,
+      12px 12px 24px 0px rgba(43, 62, 150, 0.33);
+
+    label {
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 17px;
+      text-align: left;
+    }
+
+    .custom-event-select {
+      width: 100%;
+      .ant-select-selector {
+        background: unset;
+        border: none;
+        outline: none;
+        padding: 0;
+      }
+
+      .ant-select-selection-item {
+        font-family: Montserrat;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 25px;
+        color: rgba(0, 0, 0, 0.61);
+      }
+
+      .ant-select-arrow {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .ant-select-dropdown {
+        border-radius: 8px;
+      }
+    }
+  }
+
+  .reminder-item-tasks,
+  .reminder-item-events {
+    width: 25%;
+    padding: 3px;
+    border-radius: 4px;
+    box-shadow: -24px -24px 48px 0px rgba(0, 0, 0, 0.06) inset,
+      12px 12px 24px 0px rgba(0, 0, 0, 0.05) inset,
+      12px 12px 24px 0px rgba(43, 62, 150, 0.33);
+    label {
+      font-family: Montserrat;
+      font-size: 19px;
+      font-weight: 500;
+      line-height: 23.16px;
+      text-align: left;
+    }
+
+    .notification-item-tasks,
+    .notification-item-events {
+      //   margin-top: 1em;
+      nz-row {
+        display: flex;
+        align-items: center;
+        /* gap: 20px; */
+        justify-content: space-between;
+      }
+      .ant-row {
+        flex-flow: row wrap;
+        min-width: 0;
+        margin: 3px;
+      }
+      .number-plate {
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        background: rgba(255, 255, 255, 1);
+        border-radius: 8px;
+        padding: 0 5px;
+
+        .ant-btn {
+          padding: 0 5px;
+          border-radius: 8px;
+        }
+        .increment-button {
+          background-color: rgba(8, 37, 171, 0.87);
+          color: rgba(255, 255, 255, 1);
+
+          border-radius: 8px;
+        }
+        span {
+          padding: 0 5px;
+        }
+      }
+      .uom-list-select {
+        width: 100px;
+        box-shadow: -12px -12px 24px 0px rgba(242, 244, 245, 0.45) inset,
+          0px 4px 4px 0px rgba(8, 36, 168, 0.21),
+          12px 12px 24px 0px rgba(8, 36, 167, 0.02) inset;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 8px;
+      }
+    }
+  }
+}

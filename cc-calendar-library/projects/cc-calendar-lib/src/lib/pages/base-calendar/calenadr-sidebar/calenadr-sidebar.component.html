@@ -1,0 +1,152 @@
+<nz-row>
+  <nz-col [nzLg]="24">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <span>
+          <i nz-icon nzType="menu" (click)="toggleSidebar()"></i>
+          Calendar
+        </span>
+      </div>
+      <br />
+
+      <!-- Create Button -->
+      <div class="create-button">
+        <button
+          nz-button
+          nz-dropdown
+          [nzPlacement]="'bottomCenter'"
+          nzTrigger="click"
+          class="me-2"
+          (click)="onTaskClick()"
+        >
+          <i nz-icon nzType="plus" class="plus-icon"></i
+          ><span class="title">Task</span>
+        </button>
+
+        <!-- <button
+          nz-button
+          nz-dropdown
+          [nzDropdownMenu]="menu"
+          [nzPlacement]="'bottomCenter'"
+          nzTrigger="click"
+          class="me-2"
+        >
+          <i nz-icon nzType="plus" class="plus-icon"></i
+          ><span class="title">Create</span
+          ><i nz-icon nzType="down" class="down-icon"></i>
+        </button>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item (click)="onEventClick()">
+              <a>Events</a>
+            </li>
+            <li nz-menu-item (click)="onTaskClick()">
+              <a>Tasks</a>
+            </li>
+          </ul>
+        </nz-dropdown-menu> -->
+      </div>
+
+      <br />
+      <!-- Calendar -->
+      <div class="custom-calendar-wrapper">
+        <div class="calendar-header">
+          <div class="month-year-display">
+            <span>
+              <strong>{{ currentMonth }}</strong>
+              {{ currentYear }}</span
+            >
+          </div>
+          <div class="toggle-btns">
+            <button class="prev-button" (click)="goToPreviousMonth()">
+              &lt;
+            </button>
+            <button class="next-button" (click)="goToNextMonth()">&gt;</button>
+          </div>
+        </div>
+
+        <div class="calendar-wrapper">
+          <table class="week-number-table">
+            <thead>
+              <tr>
+                <th>{{ currentMonthNumber }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let week of weeks">
+                <td class="week-number">{{ week }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div [ngStyle]="{ width: '300px' }">
+            <nz-calendar
+              nzFullscreen="false"
+              [nzMode]="'month'"
+              [(nzValue)]="currentDate"
+              (nzValueChange)="onValueChange($event)"
+            ></nz-calendar>
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <!-- Calendar Event Type -->
+      <div class="event-type">
+        <span>Calendar Event Type</span>
+        <div *ngFor="let type of allEventTypes">
+          <button
+            nz-button
+            nzType="default"
+            nzBlock
+            [ngClass]="getButtonClass(type)"
+            (click)="toggleSelection(type)"
+            [class.selected]="isSelected(type.lookup_id)"
+          >
+            {{ type.lookup_value }}
+          </button>
+        </div>
+      </div>
+      <br />
+
+      <!-- User's Calendars -->
+
+      <nz-collapse>
+        <nz-collapse-panel [nzHeader]="'User’s Calendar'" [nzActive]="true">
+          <ul class="task-list">
+            <li *ngFor="let calendar of calendars">
+              <label
+                nz-checkbox
+                class="user-calendar-checkbox"
+                [(ngModel)]="calendar.checked"
+              >
+                {{ calendar.name }}
+              </label>
+            </li>
+          </ul>
+        </nz-collapse-panel>
+      </nz-collapse>
+      <br />
+
+      <!-- User's Tasks -->
+      <nz-collapse>
+        <nz-collapse-panel [nzHeader]="'User’s Tasks'" [nzActive]="true">
+          <ul class="task-list">
+            <li *ngFor="let task of tasks">
+              <label
+                nz-checkbox
+                [ngModel]="
+                  !isUserTaskCheckBoxSelected(task.event_task_instance_id)
+                "
+                [ngClass]="tasksCheckBoxColor(task.event_task_status_type_id)"
+                (ngModelChange)="taskChecboxSelection(task)"
+              >
+                {{ task.event_task_title | titlecase }}
+              </label>
+            </li>
+          </ul>
+        </nz-collapse-panel>
+      </nz-collapse>
+      <br />
+    </div>
+  </nz-col>
+</nz-row>

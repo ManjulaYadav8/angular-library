@@ -1,0 +1,26 @@
+<!-- <nz-card> -->
+<div class="form-item">
+  <span class="notif_title">Notification Settings</span>
+</div>
+<form [formGroup]="notificationSettingForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="setting_value">
+    <!-- Notification Alert Type Select -->
+    <div class="form-item-notif">
+      <div class="notif-form-item">
+        <!-- <label for="Alerts">Alerts</label> -->
+        <nz-select
+          nzShowSearch
+          id="Alerts"
+          formControlName="notification_alerts"
+          class="custom-event-select"
+        >
+          <nz-option
+            *ngFor="let notif of notifAlertType"
+            [nzValue]="notif"
+            [nzLabel]="notif | titlecase"
+          ></nz-option>
+        </nz-select>
+      </div>
+    </div>
+  </div>
+</form>

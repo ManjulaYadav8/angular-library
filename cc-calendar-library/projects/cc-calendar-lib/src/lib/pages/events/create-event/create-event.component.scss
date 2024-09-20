@@ -1,0 +1,224 @@
+.ant-modal {
+  top: 50px;
+  .ant-modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    .ant-modal-body {
+      padding: 24px !important;
+    }
+
+    .ant-modal-header {
+      background: rgba(45, 67, 166, 1);
+      border-radius: 8px 8px 0 0;
+    }
+    .ant-modal-title {
+      color: rgba(255, 255, 255, 1);
+      font-family: Montserrat;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 15px;
+      text-align: left;
+    }
+
+    .ant-form-item-label > label {
+      // color: rgba(45, 67, 166, 1); font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      text-align: center;
+      color: rgba(23, 26, 31, 0.65);
+    }
+
+    input[nz-input],
+    .ant-select-selector,
+    .ant-picker {
+      border-radius: 4px;
+      border: 1px solid #d9d9d9;
+    }
+
+    .ant-btn-primary {
+      background-color: rgba(45, 67, 166, 1);
+      border-color: rgba(45, 67, 166, 1);
+    }
+    .ant-modal-close-x {
+      color: #fff;
+    }
+
+    .form-item {
+      .date-time-controls {
+        .clock-circle-icon {
+          width: 32px;
+          height: 32px;
+          top: -4px;
+          left: -2.02px;
+          gap: 0px;
+          opacity: 0px;
+
+          background: rgba(8, 36, 166, 0.72);
+        }
+      }
+      .dropdown-section {
+        .nz-select-margin {
+          margin: 0 5px;
+        }
+        .ant-col-7 {
+          max-width: 26%;
+        }
+      }
+      .reminder-control {
+        .ant-row {
+          margin-bottom: 1em;
+        }
+        .ant-input-number {
+          border: 1px solid #d9d9d9;
+
+          align-items: center;
+          justify-content: center;
+
+          .ant-input-number-input {
+            text-align: center;
+          }
+
+          .ant-input-number-handler-wrap {
+            .ant-input-number-handler {
+              &.ant-input-number-handler-up,
+              &.ant-input-number-handler-down {
+              }
+            }
+          }
+        }
+
+        .ant-select {
+          margin-left: 10px;
+
+          .ant-select-selector {
+            height: 100%;
+
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d9d9d9;
+          }
+        }
+        .plus-style {
+          margin-left: 15px;
+          width: 15px;
+          cursor: pointer;
+        }
+
+        .minus-style {
+          margin-left: 15px;
+          width: 12px;
+          cursor: pointer;
+        }
+      }
+      .recusrive-control {
+        .options-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+
+          li {
+            padding: 2px;
+            border: 1px solid #d9d9d9;
+
+            background: rgba(255, 255, 255, 1);
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 17.07px;
+            text-align: left;
+            color: rgba(111, 111, 111, 1);
+
+            cursor: pointer;
+            box-shadow: -12px -12px 24px 0px rgba(242, 244, 245, 0.45) inset,
+              0px 4px 4px 0px rgba(8, 36, 168, 0.37),
+              12px 12px 24px 0px rgba(111, 126, 132, 0.13) inset;
+
+            &:hover {
+              background-color: #e6f7ff;
+            }
+          }
+          li:first-child {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+          }
+
+          li:last-child {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+          }
+        }
+      }
+      .repeat-every-control {
+        .recurrence-type {
+          width: 100px;
+        }
+      }
+      .repeat-on-control {
+        .weekdays {
+          display: flex;
+          justify-content: space-between;
+          max-width: 280px;
+          border: 1px solid rgba(255, 255, 255, 1);
+          box-shadow: 12px 12px 24px 0px rgba(0, 0, 0, 0.12);
+
+          button {
+            background: none;
+            border: none;
+            border-radius: 50%;
+            color: rgba(23, 26, 31, 1);
+            cursor: pointer;
+            outline: none;
+            font-family: Inter;
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 18px;
+            text-align: center;
+            width: 25px;
+            height: 25px;
+
+            &.selected {
+              background-color: #4285f4;
+              color: #fff;
+            }
+
+            &:hover {
+              background-color: #d0d0d0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// .custom-recursive-modal {
+//   .form-item {
+//     nz-form-label {
+//       font-family: Inter;
+//       font-size: 14px;
+//       font-weight: 400;
+//       line-height: 20px;
+//       text-align: center;
+//       color: rgba(23, 26, 31, 0.65);
+//     }
+//     .repeat-every-control {
+//       .recurrence-type {
+//         width: 100px;
+//       }
+//       .recurrence-number {
+//         width: 200px;
+//       }
+//     }
+//   }
+//   .ant-modal {
+//     .ant-modal-content {
+//       .ant-modal-body {
+//         padding: 0 !important;
+//       }
+//       .ant-modal-title {
+//         font-size: 12px;
+//       }
+//     }
+//   }
+// }
